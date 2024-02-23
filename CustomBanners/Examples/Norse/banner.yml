@@ -1,0 +1,24 @@
+prefab_name: piece_banner_yggdrasil
+display_name: Banner Yggdrasil
+alt_banner: true
+recipe:
+- m_prefabName: FineWood
+  m_recover: true
+  m_amount: 2
+  m_amountPerLevel: 1
+  m_extraAmountOnlyOneIngredient: 0
+- m_prefabName: LeatherScraps
+  m_recover: true
+  m_amount: 2
+  m_amountPerLevel: 1
+  m_extraAmountOnlyOneIngredient: 0
+- m_prefabName: Coal
+  m_recover: true
+  m_amount: 4
+  m_amountPerLevel: 1
+  m_extraAmountOnlyOneIngredient: 0
+- m_prefabName: Chitin
+  m_recover: true
+  m_amount: 2
+  m_amountPerLevel: 1
+  m_extraAmountOnlyOneIngredient: 0

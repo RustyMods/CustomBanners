@@ -16,7 +16,7 @@ namespace CustomBanners
     public class CustomBannersPlugin : BaseUnityPlugin
     {
         internal const string ModName = "CustomBanners";
-        internal const string ModVersion = "1.0.2";
+        internal const string ModVersion = "1.0.3";
         internal const string Author = "RustyMods";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -82,7 +82,7 @@ namespace CustomBanners
 
         #region ConfigOptions
 
-        private ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description,
+        public ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description,
             bool synchronizedSetting = true)
         {
             ConfigDescription extendedDescription =
@@ -99,7 +99,7 @@ namespace CustomBanners
             return configEntry;
         }
 
-        private ConfigEntry<T> config<T>(string group, string name, T value, string description,
+        public ConfigEntry<T> config<T>(string group, string name, T value, string description,
             bool synchronizedSetting = true)
         {
             return config(group, name, value, new ConfigDescription(description), synchronizedSetting);

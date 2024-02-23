@@ -139,6 +139,9 @@
         <Content Include="Examples\CelticTree\banner.yml" />
         <Content Include="Examples\CelticTree\icon.png" />
         <Content Include="Examples\CelticTree\texture.png" />
+        <Content Include="Examples\Norse\banner.yml" />
+        <Content Include="Examples\Norse\icon.png" />
+        <Content Include="Examples\Norse\texture.png" />
         <Content Include="Examples\Yggdrasil\banner.yml" />
         <Content Include="Examples\Yggdrasil\icon.png" />
         <Content Include="Examples\Yggdrasil\texture.png" />

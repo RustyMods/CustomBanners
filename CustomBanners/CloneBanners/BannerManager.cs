@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using BepInEx;
 using CustomBanners.Managers;
@@ -138,13 +139,28 @@ public static class BannerManager
             }
             if (!SpriteManager.CustomIcons.ContainsKey(folderName)) SpriteManager.CustomIcons.Add(folderName, sprite);
             if(!TextureManager.RegisteredTextures.ContainsKey(folderName)) TextureManager.RegisteredTextures.Add(folderName, textures);
+            Piece.PieceCategory category = Piece.PieceCategory.Furniture;
+            try
+            {
+                object cat = Enum.Parse(typeof(Piece.PieceCategory), data.category);
+                if (cat is Piece.PieceCategory pieceCategory)
+                {
+                    category = pieceCategory;
+                }
+            }
+            catch (ArgumentException)
+            {
+                CustomBannersPlugin.CustomBannersLogger.LogDebug("Failed to set category: " + data.category);
+            }
             BannerData bannerData = new BannerData()
             {
                 m_prefabName = data.prefab_name,
                 m_displayName = data.display_name,
+                m_description = data.description,
                 m_texturesName = folderName,
                 m_recipe = data.recipe,
-                m_altBanner = data.alt_banner
+                m_altBanner = data.alt_banner,
+                m_category = category
             };
             if (!TempBanners.Contains(bannerData)) TempBanners.Add(bannerData);
         }
