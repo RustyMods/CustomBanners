@@ -16,7 +16,7 @@ namespace CustomBanners
     public class CustomBannersPlugin : BaseUnityPlugin
     {
         internal const string ModName = "CustomBanners";
-        internal const string ModVersion = "1.0.0";
+        internal const string ModVersion = "1.0.2";
         internal const string Author = "RustyMods";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";
@@ -28,12 +28,15 @@ namespace CustomBanners
         public enum Toggle { On = 1, Off = 0 }
         public static CustomBannersPlugin _plugin = null!;
         public static GameObject Root = null!;
+        public static AssetBundle _assets = null!;
         public void Awake()
         {
             _plugin = this;
             Root = new GameObject("root");
             Root.SetActive(false);
             DontDestroyOnLoad(Root);
+
+            _assets = GetAssetBundle("custombannerbundle");
             
             Assembly assembly = Assembly.GetExecutingAssembly();
             _harmony.PatchAll(assembly);
@@ -67,12 +70,17 @@ namespace CustomBanners
                 CustomBannersLogger.LogError("Please check your config entries for spelling and format!");
             }
         }
+        
+        private static AssetBundle GetAssetBundle(string fileName)
+        {
+            Assembly execAssembly = Assembly.GetExecutingAssembly();
+            string resourceName = execAssembly.GetManifestResourceNames().Single(str => str.EndsWith(fileName));
+            using Stream? stream = execAssembly.GetManifestResourceStream(resourceName);
+            return AssetBundle.LoadFromStream(stream);
+        }
 
 
         #region ConfigOptions
-
-        private static ConfigEntry<Toggle> _serverConfigLocked = null!;
-        private static ConfigEntry<Toggle> _recipeIsActiveConfig = null!;
 
         private ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description,
             bool synchronizedSetting = true)

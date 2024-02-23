@@ -117,6 +117,7 @@
         <Compile Include="CloneBanners\BannerData.cs" />
         <Compile Include="CloneBanners\BannerManager.cs" />
         <Compile Include="CloneBanners\Banners.cs" />
+        <Compile Include="Managers\MaterialReplacer.cs" />
         <Compile Include="Managers\SpriteManager.cs" />
         <Compile Include="Managers\TextureManager.cs" />
         <Compile Include="Plugin.cs" />
@@ -124,6 +125,9 @@
         <Compile Include="VersionHandshake.cs" />
     </ItemGroup>
     <ItemGroup>
+        <EmbeddedResource Include="..\..\..\bundles_custom\custombannerbundle">
+          <Link>assets\custombannerbundle</Link>
+        </EmbeddedResource>
         <Content Include=".gitignore" />
         <Content Include="environment.props" />
         <Content Include="Examples\Bear\banner.yml" />

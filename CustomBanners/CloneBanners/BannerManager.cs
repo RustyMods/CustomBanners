@@ -2,7 +2,6 @@
 using System.IO;
 using BepInEx;
 using CustomBanners.Managers;
-using HarmonyLib;
 using ServerSync;
 using UnityEngine;
 using YamlDotNet.Serialization;
@@ -74,6 +73,9 @@ public static class BannerManager
         }
         
         string[] folders = Directory.GetDirectories(FolderName);
+        SpriteManager.CustomIcons.Clear();
+        TextureManager.RegisteredTextures.Clear();
+        TempBanners.Clear();
         foreach (string folderName in folders)
         {
             string[] files = Directory.GetFiles(folderName);
@@ -134,16 +136,17 @@ public static class BannerManager
                 CustomBannersPlugin.CustomBannersLogger.LogDebug("Failed to get all required information from " + folderName);
                 continue;
             }
-            SpriteManager.CustomIcons.Add(folderName, sprite);
-            TextureManager.RegisteredTextures.Add(folderName, textures);
+            if (!SpriteManager.CustomIcons.ContainsKey(folderName)) SpriteManager.CustomIcons.Add(folderName, sprite);
+            if(!TextureManager.RegisteredTextures.ContainsKey(folderName)) TextureManager.RegisteredTextures.Add(folderName, textures);
             BannerData bannerData = new BannerData()
             {
                 m_prefabName = data.prefab_name,
                 m_displayName = data.display_name,
                 m_texturesName = folderName,
-                m_recipe = data.recipe
+                m_recipe = data.recipe,
+                m_altBanner = data.alt_banner
             };
-            TempBanners.Add(bannerData);
+            if (!TempBanners.Contains(bannerData)) TempBanners.Add(bannerData);
         }
 
         if (ZNet.instance.IsServer())
