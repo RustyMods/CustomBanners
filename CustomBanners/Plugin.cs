@@ -16,7 +16,7 @@ namespace CustomBanners
     public class CustomBannersPlugin : BaseUnityPlugin
     {
         internal const string ModName = "CustomBanners";
-        internal const string ModVersion = "1.0.3";
+        internal const string ModVersion = "1.0.7";
         internal const string Author = "RustyMods";
         private const string ModGUID = Author + "." + ModName;
         private static string ConfigFileName = ModGUID + ".cfg";

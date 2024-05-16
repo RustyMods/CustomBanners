@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BepInEx.Configuration;
 using CustomBanners.Managers;
 using HarmonyLib;
+using PieceManager;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -93,6 +95,33 @@ public static class Banners
     private static void InitBanners(ZNetScene instance)
     {
         if (bannerRan) return;
+
+        if (MaterialReplacer.CachedShaders.Count <= 0)
+        {
+            // Get all assetbundles and find the shaders in them
+            var assetBundles = Resources.FindObjectsOfTypeAll<AssetBundle>();
+            foreach (var bundle in assetBundles)
+            {
+                IEnumerable<Shader>? bundleShaders;
+                try
+                {
+                    bundleShaders = bundle.isStreamedSceneAssetBundle && bundle
+                        ? bundle.GetAllAssetNames().Select(bundle.LoadAsset<Shader>).Where(shader => shader != null)
+                        : bundle.LoadAllAssets<Shader>();
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
+                if (bundleShaders == null) continue;
+                foreach (var shader in bundleShaders)
+                {
+                    MaterialReplacer.CachedShaders.Add(shader);
+                }
+            }
+        }
+        
         GameObject originalBanner = instance.GetPrefab("piece_banner01");
         altBanner = CustomBannersPlugin._assets.LoadAsset<GameObject>("piece_custom_banner");
         if (!originalBanner.TryGetComponent(out Piece originalPiece)) return;
@@ -146,7 +175,7 @@ public static class Banners
                 if (!prefab.transform.Find("default").TryGetComponent(out MeshRenderer renderer1)) continue;
                 foreach (Material mat in renderer1.materials)
                 {
-                    mat.shader = Shader.Find("Custom/Vegetation");
+                    mat.shader = MaterialReplacer.GetShaderForType(mat.shader, MaterialReplacer.ShaderType.VegetationShader, mat.shader.name);
                     mat.SetTexture(MainTex, TextureManager.RegisteredTextures[data.m_texturesName]["main"]);
                     mat.SetTexture(BumpMap, null);
                 }
