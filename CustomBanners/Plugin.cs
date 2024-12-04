@@ -5,6 +5,7 @@ using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
+using CustomBanners.CloneBanners;
 using HarmonyLib;
 using JetBrains.Annotations;
 using ServerSync;
@@ -16,11 +17,11 @@ namespace CustomBanners
     public class CustomBannersPlugin : BaseUnityPlugin
     {
         internal const string ModName = "CustomBanners";
-        internal const string ModVersion = "1.0.7";
+        internal const string ModVersion = "1.0.9";
         internal const string Author = "RustyMods";
         private const string ModGUID = Author + "." + ModName;
-        private static string ConfigFileName = ModGUID + ".cfg";
-        private static string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
+        private static readonly string ConfigFileName = ModGUID + ".cfg";
+        private static readonly string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
         internal static string ConnectionError = "";
         private readonly Harmony _harmony = new(ModGUID);
         public static readonly ManualLogSource CustomBannersLogger = BepInEx.Logging.Logger.CreateLogSource(ModName);
@@ -35,9 +36,8 @@ namespace CustomBanners
             Root = new GameObject("root");
             Root.SetActive(false);
             DontDestroyOnLoad(Root);
-
             _assets = GetAssetBundle("custombannerbundle");
-            
+            BannerManager.PrepareBanners();
             Assembly assembly = Assembly.GetExecutingAssembly();
             _harmony.PatchAll(assembly);
             SetupWatcher();
@@ -105,7 +105,7 @@ namespace CustomBanners
             return config(group, name, value, new ConfigDescription(description), synchronizedSetting);
         }
 
-        private class ConfigurationManagerAttributes
+        public class ConfigurationManagerAttributes
         {
             [UsedImplicitly] public int? Order;
             [UsedImplicitly] public bool? Browsable;

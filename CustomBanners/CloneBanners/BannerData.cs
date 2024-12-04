@@ -11,7 +11,7 @@ public class YmlData
     public string description = "";
     public List<BannerIngredient> recipe = new();
     public bool alt_banner = false;
-    public string category = "Furniture";
+    public string category = "Banners";
 }
 
 [Serializable]
@@ -23,7 +23,7 @@ public class BannerData
     public string m_texturesName = null!;
     public List<BannerIngredient> m_recipe = null!;
     public bool m_altBanner = false;
-    public Piece.PieceCategory m_category = Piece.PieceCategory.Furniture;
+    public string m_category = "Banners";
 }
 [Serializable]
 public class BannerIngredient
