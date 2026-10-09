@@ -1,6 +1,8 @@
 id: piece_custom_banner_default_example
-name: custom banner
-description: ""
+name:
+  English: custom banner
+description:
+  English: ""
 image: example
 icon: ""
 requirements:

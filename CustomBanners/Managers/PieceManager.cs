@@ -166,10 +166,6 @@ public class BuildPiece
         public ConfigEntry<float> maxStationDistance = null!;
         public ConfigEntry<CraftingTable> table = null!;
         public ConfigEntry<string> customTable = null!;
-        public ConfigEntry<float> health = null!;
-        public ConfigEntry<bool> supports = null!;
-        public ConfigEntry<WearNTear.MaterialType> material = null!;
-        public ConfigEntry<bool> enabled = null!;
     }
 
     internal static readonly List<BuildPiece> registeredPieces = [];
@@ -608,21 +604,6 @@ public class BuildPiece
                         }
                     };
                 }
-                
-                if (piece.Prefab.TryGetComponent(out WearNTear wnt))
-                {
-                    cfg.supports = config(englishName, "Supports", wnt.m_supports, new ConfigDescription("If true, piece can support others", null, new ConfigurationManagerAttributes{Order = --order, Category = localizedName}));
-                    cfg.supports.SettingChanged += (_, _) => wnt.m_supports = cfg.supports.Value;
-                    
-                    cfg.material = config(englishName, "Material Type", wnt.m_materialType, new ConfigDescription("Set Piece material type", null, new ConfigurationManagerAttributes{Order = --order, Category = localizedName}));
-                    cfg.material.SettingChanged += (_,_) => wnt.m_materialType = cfg.material.Value;
-                    
-                    cfg.health = config(englishName, "Health", wnt.m_health, new ConfigDescription("Set Piece health", null, new ConfigurationManagerAttributes{Order = --order, Category = localizedName}));
-                    cfg.health.SettingChanged += (_, _) => wnt.m_health = cfg.health.Value;
-                }
-                
-                cfg.enabled = config(englishName, "Enabled", piecePrefab.m_enabled, new ConfigDescription("If true, Piece is available", null, new ConfigurationManagerAttributes{Order = --order, Category = localizedName}));
-                cfg.enabled.SettingChanged += (_, _) => piecePrefab.m_enabled = cfg.enabled.Value;
             }
 
             foreach (BuildPiece piece in registeredPieces)
@@ -1171,7 +1152,7 @@ public class LocalizeKey
     public LocalizeKey Serbian(string key) => addForLang("Serbian", key);
     public LocalizeKey Ukrainian(string key) => addForLang("Ukrainian", key);
 
-    private LocalizeKey addForLang(string lang, string value)
+    public LocalizeKey addForLang(string lang, string value)
     {
         Localizations[lang] = value;
         if (Localization.m_instance != null)

@@ -26,11 +26,14 @@ Each custom banner requires a .png texture and a .yml configuration file.
 # Unique prefab ID. Banners with duplicate IDs will be skipped.
 id: piece_custom_banner_default_example
 
-# Localized name in English
-name: Custom Banner
-
-# Localized description in English
-description: ""
+# Localized name
+name: 
+  English: Custom Banner
+  French: Bannière Personnalisée
+  
+# Localized description
+description: 
+  English: ""
 
 # PNG texture filename without the extension
 image: example

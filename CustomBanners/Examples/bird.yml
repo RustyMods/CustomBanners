@@ -1,8 +1,7 @@
 id: piece_banner_bird
-name: Bird Banner
-description: ""
 image: bird
-icon: ""
+name:
+  English: Bird Banner
 requirements:
   - itemName: FineWood
     amount: 10
