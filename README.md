@@ -1,60 +1,61 @@
 # Custom Banners
 
-Plugin allows to create infinite amount of custom banners
+Plugin allows to create custom banners.
 
-The plugin is published with 4 example folders.
+## Need a dedicated server ?
+- Use this link: https://www.survivalservers.com/r/rustymods/valheim
+- I'll get a 20% commission. Thanks.
 
-In order to successfully add custom banners into the game, you will need to create folders with 3 dinstict files:
-- texture.png
-- icon.png
-- banner.yml
 
-The plugin will read these 3 files, and generater the necessary information to create a new banner prefab.
+## 1.1.0 update
+Lost the original project, so everything has been remade. Files designed around previous versions will not work.
 
-## Server Sync
+## How to
+1. Navigate to BepInEx/config/CustomBanners.
+2. The plugin includes two example banners to use as templates.
+3. Copy the example .png and .yml files for your new banner.
+4. Edit the .yml file to configure your banner's name, description, texture, and build requirements.
+5. Open the .png file in your preferred image editor (e.g., Photoshop) and create your banner texture.
+6. (Optional) Create a custom icon texture. Icons must have a square aspect ratio (e.g., 128×128).
 
-If plugin is loaded on server, the yml file is read and shared with clients in order to dictate the recipe.
+Each custom banner requires a .png texture and a .yml configuration file.
 
-Server requires to have the texture.png and icon.png as well.
-
-Recipes cannot be manipulated during run-time.
-
-## Example YML
+## YML Format
 
 ```yml
-prefab_name: piece_banner_bear
-display_name: Banner Bear
-recipe:
-- m_prefabName: FineWood
-  m_recover: true
-  m_amount: 2
-  m_amountPerLevel: 1
-  m_extraAmountOnlyOneIngredient: 0
-- m_prefabName: LeatherScraps
-  m_recover: true
-  m_amount: 2
-  m_amountPerLevel: 1
-  m_extraAmountOnlyOneIngredient: 0
-- m_prefabName: Coal
-  m_recover: true
-  m_amount: 4
-  m_amountPerLevel: 1
-  m_extraAmountOnlyOneIngredient: 0
-- m_prefabName: Chitin
-  m_recover: true
-  m_amount: 2
-  m_amountPerLevel: 1
-  m_extraAmountOnlyOneIngredient: 0
+# Unique prefab ID. Banners with duplicate IDs will be skipped.
+id: piece_custom_banner_default_example
+
+# Localized name in English
+name: Custom Banner
+
+# Localized description in English
+description: ""
+
+# PNG texture filename without the extension
+image: example
+
+# Optional icon texture. Leave empty to generate an icon automatically.
+icon: ""
+
+# Build requirements
+requirements:
+  - itemName: FineWood
+    amount: 10
+    recover: true
+  - itemName: Coal
+    amount: 2
+    recover: true
+  - itemName: LeatherScraps
+    amount: 2
+    recover: true
 ```
 
-![Imgur](https://i.imgur.com/eG7Zivz.png)
+## Texture Format
+![](https://raw.githubusercontent.com/RustyMods/CustomBanners/refs/heads/master/CustomBanners/Examples/bird.png)
 
-## Contact information
-For Questions or Comments, find <span style="color:orange">Rusty</span> in the Odin Plus Team Discord
 
-[![https://i.imgur.com/XXP6HCU.png](https://i.imgur.com/XXP6HCU.png)](https://discord.gg/v89DHnpvwS)
-
-Or come find me at the [Modding Corner](https://discord.gg/fB8aHSfA8B)
+![](https://raw.githubusercontent.com/RustyMods/CustomBanners/refs/heads/master/CustomBanners/Screenshots/Screenshot%202026-10-09%20084627.png)
 
 ##
 If you enjoy this mod and want to support me:

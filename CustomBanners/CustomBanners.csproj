@@ -124,6 +124,9 @@
         <Compile Include="VersionHandshake.cs" />
     </ItemGroup>
     <ItemGroup>
+        <Content Include="..\README.md">
+          <Link>README.md</Link>
+        </Content>
         <Content Include=".gitignore" />
         <EmbeddedResource Include="assets\custom_banners" />
         <Content Include="assets\custom_banners.manifest" />

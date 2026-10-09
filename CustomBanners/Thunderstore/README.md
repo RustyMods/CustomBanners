@@ -2,31 +2,43 @@
 
 Plugin allows to create custom banners.
 
+## Need a dedicated server ?
+- Use this link: https://www.survivalservers.com/r/rustymods/valheim
+- I'll get a 20% commission. Thanks.
+
+
 ## 1.1.0 update
 Lost the original project, so everything has been remade. Files designed around previous versions will not work.
 
 ## How to
-1. Find the CustomBanner folder under `BepinEx/config/CustomBanners`
-2. The plugin ships with 2 example banners
-3. You will need 2 files (`.png` and `.yml`) to create a custom banner
-4. Use the provided example files (copy & paste) and edit them
-5. Open the png file with your image editing software of your choice (ie. Photoshop) and create your texture
-6. optional: create an icon texture, must be a square ratio (ie. 128x128)
+1. Navigate to BepInEx/config/CustomBanners.
+2. The plugin includes two example banners to use as templates.
+3. Copy the example .png and .yml files for your new banner.
+4. Edit the .yml file to configure your banner's name, description, texture, and build requirements.
+5. Open the .png file in your preferred image editor (e.g., Photoshop) and create your banner texture.
+6. (Optional) Create a custom icon texture. Icons must have a square aspect ratio (e.g., 128×128).
+
+Each custom banner requires a .png texture and a .yml configuration file.
 
 ## YML Format
 
 ```yml
-## id must be unique, if another prefab has the same id, plugin will skip it
+# Unique prefab ID. Banners with duplicate IDs will be skipped.
 id: piece_custom_banner_default_example
-## localized name in English
-name: custom banner
-## localized description in English
+
+# Localized name in English
+name: Custom Banner
+
+# Localized description in English
 description: ""
-## provide texture PNG name without extension
+
+# PNG texture filename without the extension
 image: example
-## icon is optional, if not provided, plugin will generate icon
-icon: "" 
-## build requirements
+
+# Optional icon texture. Leave empty to generate an icon automatically.
+icon: ""
+
+# Build requirements
 requirements:
   - itemName: FineWood
     amount: 10
@@ -37,9 +49,11 @@ requirements:
   - itemName: LeatherScraps
     amount: 2
     recover: true
-## If banner has been successfully created, configurations will be available to edit while in-game under RustyMods.CustomBanners.cfg
-## This file defines the initial state of the prefab, editing file while in-game won't do anything
 ```
+
+## Texture Format
+![](https://raw.githubusercontent.com/RustyMods/CustomBanners/refs/heads/master/CustomBanners/Examples/bird.png)
+
 
 ![](https://raw.githubusercontent.com/RustyMods/CustomBanners/refs/heads/master/CustomBanners/Screenshots/Screenshot%202026-10-09%20084627.png)
 
