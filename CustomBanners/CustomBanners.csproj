@@ -128,6 +128,10 @@
         <EmbeddedResource Include="assets\custom_banners" />
         <Content Include="assets\custom_banners.manifest" />
         <Content Include="environment.props" />
+        <Content Include="Examples\bird.png" />
+        <Content Include="Examples\bird.yml" />
+        <Content Include="Examples\bird_ripped.png" />
+        <Content Include="Examples\bird_ripped.yml" />
         <Content Include="Examples\default.yml" />
         <Content Include="Examples\uv_layout.png" />
         <Content Include="ILRepack.targets" />

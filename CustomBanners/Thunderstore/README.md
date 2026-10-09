@@ -41,8 +41,7 @@ requirements:
 ## This file defines the initial state of the prefab, editing file while in-game won't do anything
 ```
 
-![](https://i.imgur.com/4lNh6Jb.png)
-
+![](https://raw.githubusercontent.com/RustyMods/CustomBanners/refs/heads/master/CustomBanners/Screenshots/Screenshot%202026-10-09%20084627.png)
 
 ##
 If you enjoy this mod and want to support me:

@@ -1,0 +1,15 @@
+id: piece_banner_bird_ripped
+name: Ripped Bird Banner
+description: ""
+image: bird_ripped
+icon: ""
+requirements:
+  - itemName: FineWood
+    amount: 10
+    recover: true
+  - itemName: Coal
+    amount: 2
+    recover: true
+  - itemName: LeatherScraps
+    amount: 2
+    recover: true
