@@ -1,0 +1,15 @@
+id: piece_custom_banner_default_example
+name: custom banner
+description: ""
+image: example
+icon: ""
+requirements:
+  - itemName: FineWood
+    amount: 10
+    recover: true
+  - itemName: Coal
+    amount: 2
+    recover: true
+  - itemName: LeatherScraps
+    amount: 2
+    recover: true
