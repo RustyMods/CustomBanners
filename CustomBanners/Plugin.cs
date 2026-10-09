@@ -1,12 +1,9 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Reflection;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
-using JetBrains.Annotations;
 using ServerSync;
 using UnityEngine;
 
@@ -16,7 +13,7 @@ namespace CustomBanners;
 public class CustomBannersPlugin : BaseUnityPlugin
 {
     internal const string ModName = "CustomBanners";
-    internal const string ModVersion = "1.1.1";
+    internal const string ModVersion = "1.1.0";
     internal const string Author = "RustyMods";
     private const string ModGUID = Author + "." + ModName;
     private static readonly string ConfigFileName = ModGUID + ".cfg";
@@ -28,33 +25,20 @@ public class CustomBannersPlugin : BaseUnityPlugin
     public static readonly ConfigSync ConfigSync = new(ModGUID)
         { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = ModVersion };
 
-    public enum Toggle
-    {
-        On = 1,
-        Off = 0
-    }
-
-    public static CustomBannersPlugin _plugin = null!;
     public static GameObject m_root = null!;
 
     public void Awake()
     {
-        _plugin = this;
         m_root = new GameObject("root");
         m_root.SetActive(false);
         DontDestroyOnLoad(m_root);
         
         Banners.Init();
         
-        
-        
-        
         var assembly = Assembly.GetExecutingAssembly();
         _harmony.PatchAll(assembly);
         SetupWatcher();
     }
-
-    
     
     
     private void OnDestroy()
@@ -88,15 +72,6 @@ public class CustomBannersPlugin : BaseUnityPlugin
         }
     }
 
-    private static AssetBundle GetAssetBundle(string fileName)
-    {
-        var execAssembly = Assembly.GetExecutingAssembly();
-        var resourceName = execAssembly.GetManifestResourceNames().Single(str => str.EndsWith(fileName));
-        using var stream = execAssembly.GetManifestResourceStream(resourceName);
-        return AssetBundle.LoadFromStream(stream);
-    }
-
-
     public ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description,
         bool synchronizedSetting = true)
     {
@@ -118,13 +93,5 @@ public class CustomBannersPlugin : BaseUnityPlugin
         bool synchronizedSetting = true)
     {
         return config(group, name, value, new ConfigDescription(description), synchronizedSetting);
-    }
-
-    public class ConfigurationManagerAttributes
-    {
-        [UsedImplicitly] public int? Order;
-        [UsedImplicitly] public bool? Browsable;
-        [UsedImplicitly] public string? Category;
-        [UsedImplicitly] public Action<ConfigEntryBase>? CustomDrawer;
     }
 }
