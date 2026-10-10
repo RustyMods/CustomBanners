@@ -1,0 +1,14 @@
+id: piece_banner_bird
+image: bird
+name:
+  English: Bird Banner
+requirements:
+  - itemName: FineWood
+    amount: 10
+    recover: true
+  - itemName: Coal
+    amount: 2
+    recover: true
+  - itemName: LeatherScraps
+    amount: 2
+    recover: true

@@ -12,7 +12,8 @@ namespace CustomBanners;
 
 public static class Banners
 {
-    private static readonly MethodInfo LoadImage = AccessTools.Method(typeof(ImageConversion), nameof(ImageConversion.LoadImage), new [] { typeof(Texture2D), typeof(byte[]) });
+    private static readonly MethodInfo LoadImage = AccessTools.Method(typeof(ImageConversion), nameof(ImageConversion.LoadImage),
+        [typeof(Texture2D), typeof(byte[])]);
     public static bool LoadImage4x(this Texture2D tex, byte[] data)
     {
         return (bool)LoadImage.Invoke(null, [tex , data]);
@@ -20,6 +21,7 @@ public static class Banners
     
     private static readonly Dictionary<string, Texture2D> textures = new();
     private static readonly List<BannerData> configurations = [];
+    private static bool loaded;
 
     private static readonly GameObject sourcePrefab = PiecePrefabManager.RegisterAssetBundle("custom_banners").LoadAsset<GameObject>("piece_custom_banner");
 
@@ -71,6 +73,7 @@ public static class Banners
 
     public static void CreateBanners()
     {
+        if (loaded) return;
         if (BuildPiece.TryGetPrefab("piece_banner01", out GameObject piece_banner01))
         {
             var woodBeamMats = piece_banner01.transform.Find("woodbeam").GetComponent<MeshRenderer>().sharedMaterials;
@@ -160,8 +163,9 @@ public static class Banners
                     build.Snapshot();
                 }
             }
-        }        
-        
+        }
+
+        loaded = true;
     }
     
     private static (int width, int height) GetPngSize(byte[] bytes)

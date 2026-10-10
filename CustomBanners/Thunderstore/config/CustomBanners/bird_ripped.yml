@@ -1,0 +1,15 @@
+id: piece_banner_bird_ripped
+image: bird_ripped
+requirements:
+  - itemName: FineWood
+    amount: 10
+    recover: true
+  - itemName: Coal
+    amount: 2
+    recover: true
+  - itemName: LeatherScraps
+    amount: 2
+    recover: true
+name:
+  English: Ripped Bird Banner
+  French: Bannière d'oiseau déchiré

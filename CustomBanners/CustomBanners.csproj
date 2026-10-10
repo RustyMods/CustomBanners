@@ -144,6 +144,11 @@
         </Content>
         <Content Include="Screenshots\Screenshot 2026-10-09 084627.png" />
         <Content Include="Thunderstore\CHANGELOG.md" />
+        <Content Include="Thunderstore\config\CustomBanners\bird.png" />
+        <Content Include="Thunderstore\config\CustomBanners\bird.yml" />
+        <Content Include="Thunderstore\config\CustomBanners\bird_ripped.png" />
+        <Content Include="Thunderstore\config\CustomBanners\bird_ripped.yml" />
+        <Content Include="Thunderstore\config\CustomBanners\default.yml" />
         <Content Include="Thunderstore\CustomBanners.dll" />
         <Content Include="Thunderstore\icon.png" />
         <Content Include="Thunderstore\manifest.json" />

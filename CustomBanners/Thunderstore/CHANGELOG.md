@@ -1,3 +1,5 @@
+## 1.1.1
+- forgot to provide example banners in .zip
 ## 1.1.0
 - deep north update
 - updated server sync
